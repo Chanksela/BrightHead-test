@@ -4,7 +4,7 @@ import DarkModeCSS from "./DarkMode.module.css";
 export const DarkMode = ({ id }) => {
   return (
     <>
-      <button id={id}>Click</button>
+      <button id>Click</button>
     </>
   );
 };
