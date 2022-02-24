@@ -1,0 +1,18 @@
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--font-color);
+  font-size: 24px;
+  margin-top: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transform: ease-in-out scale(1);
+  transition: ease-in-out var(--transition-delay);
+}
+button:hover,
+button:focus {
+  font-weight: 600;
+  transform: scale(1.1);
+  color: var(--additional-color);
+}
