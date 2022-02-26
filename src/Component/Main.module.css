@@ -7,6 +7,9 @@ body {
   --additional-color: rgb(209, 159, 154);
   --transition-delay: 1.5s;
 }
+img {
+  width: 100px;
+}
 /* for dark theme */
 .dark {
   background-color: var(--main-black);
@@ -41,7 +44,7 @@ body {
   font-size: 26px;
   color: var(--main-white);
   outline: none;
-  transition: calc(var(--transition-delay) / 3);
+  transition: var(--transition-delay);
 }
 #search:hover input {
   width: 50vw;
@@ -59,9 +62,9 @@ body {
   font-size: 26px;
   color: var(--main-black);
   outline: none;
-  transition: calc(var(--transition-delay) / 3);
 }
 #searchLight:hover input {
+  transition: var(--transition-delay);
   width: 50vw;
   height: auto;
   background: var(--main-white);
