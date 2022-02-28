@@ -4,30 +4,30 @@ import MainCSS from "./Main.module.css";
 export const Main = () => {
   // light/dark theme handler
   const [lightTheme, setLightTheme] = useState(false);
+  const [userName, setUserName] = useState();
+  const [profile, setProfile] = useState();
+  const [avatar, setAvatar] = useState();
   const handleLightTheme = () => {
     setLightTheme(!lightTheme);
   };
   // searchbar & api
-  const [filteredData, setFilteredData] = useState([]);
+
   const [wordEntered, setWordEntered] = useState("");
-  const baseURL = "https://api.github.com/users";
+  let array = [];
   async function handleFilter(event) {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
-    const response = await fetch(baseURL);
-    const data = await response.json();
-
-    console.log(data);
-
-    const newFilter = data.filter((value) => {
-      return value.login.toLowerCase().includes(searchWord.toLowerCase());
+    const baseURL = `https://api.github.com/users/${wordEntered}`;
+    const response = await fetch(baseURL, {
+      headers: {
+        Authorization: "token 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",
+      },
     });
-
-    if (searchWord === "") {
-      setFilteredData([]);
-    } else {
-      setFilteredData(newFilter);
-    }
+    const data = await response.json();
+    array.push(data);
+    setUserName(array[0].login);
+    setProfile(array[0].html_url);
+    setAvatar(array[0].avatar_url);
   }
 
   return (
@@ -41,18 +41,14 @@ export const Main = () => {
       <div id={lightTheme ? MainCSS.search : MainCSS.searchLight}>
         <input type="text" value={wordEntered} onChange={handleFilter} />
       </div>
-      {filteredData.length != 0 && (
-        <div className="dataResult">
-          {filteredData.slice(0, 15).map((value) => {
-            return (
-              <a className="dataItem" href={value.html_url} target="_blank">
-                <p>{value.login} </p>
-              </a>
-            );
-          })}
-        </div>
-      )}
 
+      <a href={profile} target="_blank">
+        <img src={avatar} />
+      </a>
+      <span>
+        {" "}
+        <p>{userName}</p>
+      </span>
       <h5 id={MainCSS.footer}>
         Created by{" "}
         <a
