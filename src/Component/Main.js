@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MainCSS from "./Main.module.css";
-
+import key from "./secret";
 export const Main = () => {
   // light/dark theme handler
   const [lightTheme, setLightTheme] = useState(false);
@@ -18,9 +18,7 @@ export const Main = () => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const baseURL = `https://api.github.com/users/${wordEntered}`;
-    const response = await fetch(baseURL, {
-      headers: {},
-    });
+    const response = await fetch(baseURL, key);
     const data = await response.json();
     array.push(data);
     setUserName(array[0].login);
