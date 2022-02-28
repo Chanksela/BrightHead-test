@@ -19,15 +19,14 @@ export const Main = () => {
     setWordEntered(searchWord);
     const baseURL = `https://api.github.com/users/${wordEntered}`;
     const response = await fetch(baseURL, {
-      headers: {
-        Authorization: "token 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",
-      },
+      headers: {},
     });
     const data = await response.json();
     array.push(data);
     setUserName(array[0].login);
     setProfile(array[0].html_url);
     setAvatar(array[0].avatar_url);
+    console.log(array);
   }
 
   return (
