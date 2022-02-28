@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import MainCSS from "./Main.module.css";
-import key from "./secret";
+
 export const Main = () => {
+  const key = process.env.KEY;
   // light/dark theme handler
   const [lightTheme, setLightTheme] = useState(false);
   const [userName, setUserName] = useState();
