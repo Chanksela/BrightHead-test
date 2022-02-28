@@ -1,35 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MainCSS from "./Main.module.css";
 
 export const Main = () => {
-  const [input, setInput] = useState("");
-  const [name, setName] = useState("");
-  const [link, setLink] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const handleInput = (e) => {
-    setInput(e.target.value);
-    console.log(input);
-  };
   // light/dark theme handler
   const [lightTheme, setLightTheme] = useState(false);
   const handleLightTheme = () => {
     setLightTheme(!lightTheme);
   };
-  // test api
+  // searchbar & api
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
+  const baseURL = "https://api.github.com/users";
+  async function handleFilter(event) {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+    const response = await fetch(baseURL);
+    const data = await response.json();
 
-  useEffect(() => {
-    fetch("https://api.github.com/users/example")
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      });
-  }, []);
-  const setData = ({ login, html_url, avatar_url }) => {
-    setName(login);
-    setLink(html_url);
-    setAvatar(avatar_url);
-  };
+    console.log(data);
+
+    const newFilter = data.filter((value) => {
+      return value.login.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  }
 
   return (
     <div className={lightTheme ? MainCSS.dark : MainCSS.light}>
@@ -40,17 +39,20 @@ export const Main = () => {
         {lightTheme ? "Light" : "Dark"}
       </button>
       <div id={lightTheme ? MainCSS.search : MainCSS.searchLight}>
-        <form>
-          {" "}
-          <input type="search" id="search-user" onChange={handleInput} />
-        </form>
+        <input type="text" value={wordEntered} onChange={handleFilter} />
       </div>
-      <h4>
-        <a target="_blank" href={link}>
-          <img src={avatar} />
-          <h5>{name}</h5>
-        </a>
-      </h4>
+      {filteredData.length != 0 && (
+        <div className="dataResult">
+          {filteredData.slice(0, 15).map((value) => {
+            return (
+              <a className="dataItem" href={value.html_url} target="_blank">
+                <p>{value.login} </p>
+              </a>
+            );
+          })}
+        </div>
+      )}
+
       <h5 id={MainCSS.footer}>
         Created by{" "}
         <a
