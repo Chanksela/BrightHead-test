@@ -4,12 +4,44 @@ body {
   --nav-black: #161a22ff;
   --main-black: #010309ff;
   --main-white: #dadddeff;
+  --darker-white: rgb(168, 178, 181);
   --additional-color: rgb(209, 159, 154);
+  --sun-color: #fcba03;
   --transition-delay: 1.5s;
 }
-img {
-  width: 100px;
+
+.button {
+  height: 25px;
+  width: 25px;
+  background-color: var(--darker-white);
+  border-radius: 50%;
+  color: var(--main-white);
+  margin-top: 20px;
+  cursor: pointer;
+  transform: ease-in-out scale(1);
+  transition: ease-in-out calc(var(--transition-delay) / 2);
 }
+.button:hover,
+.button:focus {
+  font-weight: 600;
+  transform: scale(1.3);
+}
+.buttonLight {
+  height: 25px;
+  width: 25px;
+  background-color: var(--sun-color);
+  border-radius: 50%;
+  margin-top: 20px;
+  cursor: pointer;
+  transform: ease-in-out scale(1);
+  transition: ease-in-out calc(var(--transition-delay) / 2);
+}
+.buttonLight:hover,
+.buttonLight:focus {
+  font-weight: 600;
+  transform: scale(1.4);
+}
+
 /* for dark theme */
 .dark {
   background-color: var(--main-black);
@@ -36,39 +68,82 @@ img {
 }
 /* for dark theme */
 #search input {
-  width: 60px;
-  height: 60px;
+  width: 50vw;
+  height: auto;
   background: none;
   border: 4px solid var(--main-white);
-  border-radius: 50px;
+  /* border-radius: 50px; */
   font-size: 26px;
   color: var(--main-white);
   outline: none;
   transition: var(--transition-delay);
 }
-#search:hover input {
-  width: 50vw;
-  height: auto;
-  background: var(--nav-black);
-  border-radius: 10px;
-}
+
 /* for light theme */
 #searchLight input {
-  width: 60px;
-  height: 60px;
+  width: 50vw;
+  height: auto;
   background: none;
   border: 4px solid var(--main-black);
-  border-radius: 50px;
+  /* border-radius: 50px; */
   font-size: 26px;
   color: var(--main-black);
   outline: none;
 }
-#searchLight:hover input {
-  transition: var(--transition-delay);
-  width: 50vw;
+/* for light theme */
+.typeaheadLight {
+  margin-top: 0px;
+  width: 100%;
   height: auto;
-  background: var(--main-white);
-  border-radius: 10px;
+  background-color: var(--main-white);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 5px;
+  transition: var(--transition-delay);
+}
+.typeaheadLight a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: var(--main-black);
+}
+.typeaheadLight img {
+  border-radius: 50px;
+  width: 50px;
+  height: auto;
+}
+.typeaheadLight p {
+  margin-left: 5vw;
+}
+.typeaheadLight:hover {
+  background-color: var(--darker-white);
+}
+
+/* for dark theme */
+.typeaheadDark {
+  margin-top: 0px;
+  width: 100%;
+  height: auto;
+  background-color: var(--main-black);
+  box-shadow: var(--nav-black) 0px 5px 15px;
+  margin-top: 5px;
+  transition: var(--transition-delay);
+}
+.typeaheadDark a {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: var(--main-white);
+}
+.typeaheadDark img {
+  border-radius: 50px;
+  width: 50px;
+  height: auto;
+}
+.typeaheadDark p {
+  margin-left: 5vw;
+}
+.typeaheadDark:hover {
+  background-color: var(--nav-black);
 }
 
 #footer {
@@ -84,7 +159,7 @@ img {
 }
 #author:hover,
 #author:focus {
-  color: var(--additional-color);
+  color: var(--darker-white);
   font-weight: 900;
 }
 /* for light theme */
@@ -96,49 +171,6 @@ img {
 }
 #authorLight:hover,
 #authorLight:focus {
-  color: var(--additional-color);
+  color: var(--sun-color);
   font-weight: 900;
-}
-.button {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: var(--main-white);
-  font-size: 24px;
-  margin-top: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transform: ease-in-out scale(1);
-  transition: ease-in-out calc(var(--transition-delay) / 2);
-}
-.button:hover,
-.button:focus {
-  font-weight: 600;
-  transform: scale(1.1);
-}
-.buttonLight {
-  border: none;
-  outline: none;
-  background-color: transparent;
-  color: var(--main-black);
-  font-size: 24px;
-  margin-top: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transform: ease-in-out scale(1);
-  transition: ease-in-out calc(var(--transition-delay) / 2);
-}
-.buttonLight:hover,
-.buttonLight:focus {
-  font-weight: 600;
-  transform: scale(1.1);
-}
-.dataResult {
-  margin-top: 5px;
-  width: 300px;
-  height: 200px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  overflow: hidden;
-  overflow-y: auto;
 }

@@ -30,23 +30,27 @@ export const Main = () => {
 
   return (
     <div className={lightTheme ? MainCSS.dark : MainCSS.light}>
-      <button
+      <div
         className={lightTheme ? MainCSS.button : MainCSS.buttonLight}
         onClick={handleLightTheme}
-      >
-        {lightTheme ? "Light" : "Dark"}
-      </button>
+      ></div>
+
       <div id={lightTheme ? MainCSS.search : MainCSS.searchLight}>
         <input type="text" value={wordEntered} onChange={handleFilter} />
+        {wordEntered.length > 0 && (
+          <div
+            className={
+              !lightTheme ? MainCSS.typeaheadLight : MainCSS.typeaheadDark
+            }
+          >
+            <a classname={MainCSS.userInfo} href={profile} target="_blank">
+              <img className={MainCSS.avatar} src={avatar} />
+              <p className={MainCSS.userName}>{userName}</p>
+            </a>
+          </div>
+        )}
       </div>
 
-      <a href={profile} target="_blank">
-        <img src={avatar} />
-      </a>
-      <span>
-        {" "}
-        <p>{userName}</p>
-      </span>
       <h5 id={MainCSS.footer}>
         Created by{" "}
         <a
